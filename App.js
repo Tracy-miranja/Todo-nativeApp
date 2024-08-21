@@ -34,7 +34,7 @@ export default function App() {
         <TextInput
           style={{
             borderWidth: 2,
-            borderColor: "#000",
+            borderColor: "#00ff87",
             marginTop: 60,
             borderRadius: 5,
             paddingVertical: 1,
@@ -44,11 +44,12 @@ export default function App() {
         />
         <TouchableOpacity
           style={{
-            backgroundColor: "#00ff87",
+            backgroundColor: "#000",
             borderRadius: 20,
             padding: 2,
             marginTop: 5,
-            alignItems: "center", // alignText should be alignItems
+            alignItems: "center",
+            marginVertical: 34, // alignText should be alignItems
           }}
         >
           <Text style={{ color: "#fff", fontWeight: "bold" }}>Add</Text>
@@ -56,8 +57,19 @@ export default function App() {
         {/* render Todo list */}
         {/* <FlatList data={} renderItem={} keyExtractor={item => item.id} /> */}
         {dummyData.map((item) => (
-          <View key={item.id}>
-            <Text>{item.title}</Text>
+          <View
+            key={item.id}
+            style={{
+              backgroundColor: "#60efff",
+              borderRadius: 5,
+              paddingVertical: 6,
+              paddingHorizontal: 6,
+              marginTop: 5,
+            }}
+          >
+            <Text style={{ color: "#000", fontSize: 14, fontWeight: "800" }}>
+              {item.title}
+            </Text>
             <Text>{item.Duration}</Text>
           </View>
         ))}
