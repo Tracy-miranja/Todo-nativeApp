@@ -13,17 +13,14 @@ const dummyData = [
   {
     id: "1",
     title: "Practice react native",
-    Duration: "3hrs",
   },
   {
     id: "2",
     title: "Go to the gym",
-    Duration: "1hr",
   },
   {
     id: "3",
     title: "Take a cold shower",
-    Duration: "30min",
   },
 ];
 
@@ -34,6 +31,11 @@ export default function App() {
   const handleTodo = () => {
     setTodoList([...todoList, { id: Date.now().toString(), title: todo }]);
     setTodo("");
+  };
+
+  const deleteTodo = (id) => {
+    const updateTodoList = todoList.filter((todo) => todo.id !== id);
+    setTodoList(updateTodoList);
   };
   return (
     <View style={{ marginHorizontal: 16 }}>
@@ -84,10 +86,10 @@ export default function App() {
           >
             {item.title}
           </Text>
-          <Text>{item.Duration}</Text>
+
           <Text>
             <IconButton icon="pencil" />
-            <IconButton icon="trash-can" />
+            <IconButton icon="trash-can" onPress={() => deleteTodo(item.id)} />
           </Text>
         </View>
       ))}
