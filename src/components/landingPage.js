@@ -9,7 +9,7 @@ const LandingPage = () => {
         style={{ height: 300, width: 300, marginTop: 50 }}
       />
       <Text style={{ fontWeight: 800, textAlign: "center", marginTop: 5 }}>
-        No To do, Write 📝or lets take cofee!! 🎉🎉🎉
+        No To do? let's Write 📝 it!! 🎉🎉🎉
       </Text>
     </View>
   );

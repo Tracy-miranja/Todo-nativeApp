@@ -14,27 +14,55 @@ import LandingPage from "./src/components/landingPage";
 export default function App() {
   const [todo, setTodo] = useState("");
   const [todoList, setTodoList] = useState([]);
+  const [editedTodo, setEditedTodo] = useState(null);
 
   const handleTodo = () => {
+    if (todo === "") {
+      return;
+    }
     setTodoList([...todoList, { id: Date.now().toString(), title: todo }]);
     setTodo("");
   };
 
   const deleteTodo = (id) => {
-    const updateTodoList = todoList.filter((todo) => todo.id !== id);
-    setTodoList(updateTodoList);
+    const updatedTodoList = todoList.filter((todo) => todo.id !== id);
+    setTodoList(updatedTodoList);
   };
+
+  const handleEditTodo = (todo) => {
+    setEditedTodo(todo); // Set the entire object, not an array
+    setTodo(todo.title);
+  };
+
+  const handleUpdateTodo = () => {
+    const updatedTodoList = todoList.map((item) => {
+      if (item.id === editedTodo.id) {
+        return { ...item, title: todo };
+      }
+      return item;
+    });
+    setTodoList(updatedTodoList);
+    setEditedTodo(null);
+    setTodo("");
+  };
+
   return (
-    <SafeAreaView>
-      <View style={{ backgroundColor: "#000", height: 10, width: "screen" }}>
-        <Text>Hello</Text>
-      </View>
+    <SafeAreaView style={styles.safeArea}>
+      <StatusBar style="auto" />
+      <View
+        style={{
+          backgroundColor: "#bf0fff",
+          height: 70,
+          width: "100%",
+          color: "#fff",
+        }}
+      ></View>
       <View style={{ marginHorizontal: 16 }}>
         <TextInput
           style={{
             borderWidth: 2,
             borderColor: "#00ff87",
-            marginTop: 60,
+            marginTop: 20,
             borderRadius: 5,
             paddingVertical: 1,
             paddingHorizontal: 16,
@@ -43,23 +71,37 @@ export default function App() {
           onChangeText={(userText) => setTodo(userText)}
           placeholder="Add a task"
         />
-        <TouchableOpacity
-          style={{
-            backgroundColor: "#000",
-            borderRadius: 20,
-            padding: 2,
-            marginTop: 5,
-            alignItems: "center",
-            marginVertical: 34, // alignText should be alignItems
-          }}
-          onPress={() => handleTodo()}
-        >
-          <Text style={{ color: "#fff", fontWeight: "bold" }}>
-            Add to List{" "}
-          </Text>
-        </TouchableOpacity>
-        {/* render Todo list */}
-        {/* <FlatList data={} renderItem={} keyExtractor={item => item.id} /> */}
+        {editedTodo ? (
+          <TouchableOpacity
+            style={{
+              backgroundColor: "#000",
+              borderRadius: 5,
+              padding: 2,
+              marginTop: 15,
+              alignItems: "center",
+              marginVertical: 34,
+            }}
+            onPress={() => handleUpdateTodo()}
+          >
+            <Text style={{ color: "#fff", fontWeight: "bold" }}>Save</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={{
+              backgroundColor: "#000",
+              borderRadius: 5,
+              padding: 2,
+              marginTop: 15,
+              alignItems: "center",
+              marginVertical: 34,
+            }}
+            onPress={() => handleTodo()}
+          >
+            <Text style={{ color: "#fff", fontWeight: "bold" }}>
+              Add to List
+            </Text>
+          </TouchableOpacity>
+        )}
         {todoList.map((item) => (
           <View
             key={item.id}
@@ -87,14 +129,8 @@ export default function App() {
             >
               {item.title}
             </Text>
-
-            <Text>
-              <IconButton icon="pencil" />
-              <IconButton
-                icon="trash-can"
-                onPress={() => deleteTodo(item.id)}
-              />
-            </Text>
+            <IconButton icon="pencil" onPress={() => handleEditTodo(item)} />
+            <IconButton icon="trash-can" onPress={() => deleteTodo(item.id)} />
           </View>
         ))}
         {todoList.length <= 0 && <LandingPage />}
@@ -103,4 +139,9 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+});
