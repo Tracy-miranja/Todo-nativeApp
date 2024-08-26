@@ -64,7 +64,7 @@ export default function App() {
           fontWeight: "bold",
         }}
       >
-        <Text style={{ color: "#fff" }}>TO DO LIST</Text>
+        <Text style={{ color: "#fff", fontWeight: 900 }}>TO DO LIST 📝</Text>
         <ImageBackground></ImageBackground>
       </View>
       <View style={{ marginHorizontal: 16 }}>
@@ -78,9 +78,9 @@ export default function App() {
             paddingHorizontal: 16,
             color: "#000",
             backgroundColor: "#fff",
-            shadowColor: "#000",
-            shadowOffset: { width: 5, height: 2 },
-            shadowOpacity: 0.8,
+            shadowColor: "#00ff87",
+            shadowOffset: { width: 0, height: 10 },
+            shadowOpacity: 0.5,
             shadowRadius: 4,
             elevation: 5,
           }}
@@ -97,8 +97,8 @@ export default function App() {
               marginTop: 15,
               alignItems: "center",
               marginVertical: 34,
-              shadowColor: "#000",
-              shadowOffset: { width: 0, height: 2 },
+              shadowColor: "#00ff87",
+              shadowOffset: { width: 0, height: 20 },
               shadowOpacity: 0.8,
               shadowRadius: 4,
               elevation: 5,
