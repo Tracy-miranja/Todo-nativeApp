@@ -7,6 +7,7 @@ import {
   View,
   Text,
   SafeAreaView,
+  ImageBackground,
 } from "react-native";
 import { IconButton } from "react-native-paper";
 import LandingPage from "./src/components/landingPage";
@@ -51,12 +52,21 @@ export default function App() {
       <StatusBar style="auto" />
       <View
         style={{
-          backgroundColor: "#bf0fff",
+          backgroundColor: "rgba(52, 152, 219, 0.5)",
           height: 70,
           width: "100%",
           color: "#fff",
+          alignContent: "center",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: 4,
+          fontWeight: "bold",
         }}
-      ></View>
+      >
+        <Text style={{ color: "#fff" }}>TO DO LIST</Text>
+        <ImageBackground></ImageBackground>
+      </View>
       <View style={{ marginHorizontal: 16 }}>
         <TextInput
           style={{
@@ -66,6 +76,13 @@ export default function App() {
             borderRadius: 5,
             paddingVertical: 1,
             paddingHorizontal: 16,
+            color: "#000",
+            backgroundColor: "#fff",
+            shadowColor: "#000",
+            shadowOffset: { width: 5, height: 2 },
+            shadowOpacity: 0.8,
+            shadowRadius: 4,
+            elevation: 5,
           }}
           value={todo}
           onChangeText={(userText) => setTodo(userText)}
@@ -80,6 +97,11 @@ export default function App() {
               marginTop: 15,
               alignItems: "center",
               marginVertical: 34,
+              shadowColor: "#000",
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.8,
+              shadowRadius: 4,
+              elevation: 5,
             }}
             onPress={() => handleUpdateTodo()}
           >
@@ -88,25 +110,28 @@ export default function App() {
         ) : (
           <TouchableOpacity
             style={{
-              backgroundColor: "#000",
-              borderRadius: 5,
-              padding: 2,
+              backgroundColor: "#103783",
+              borderRadius: 20,
+              padding: 10,
               marginTop: 15,
               alignItems: "center",
               marginVertical: 34,
+              shadowColor: "#000",
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.8,
+              shadowRadius: 4,
+              elevation: 5,
             }}
             onPress={() => handleTodo()}
           >
-            <Text style={{ color: "#fff", fontWeight: "bold" }}>
-              Add to List
-            </Text>
+            <Text style={{ color: "#fff", fontWeight: "bold" }}>Add Task</Text>
           </TouchableOpacity>
         )}
         {todoList.map((item) => (
           <View
             key={item.id}
             style={{
-              backgroundColor: "#60efff",
+              backgroundColor: "#c11e38",
               borderRadius: 5,
               paddingVertical: 6,
               paddingHorizontal: 6,
@@ -116,12 +141,15 @@ export default function App() {
               justifyContent: "space-around",
               shadowColor: "#000",
               shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 2,
+              shadowOpacity: 0.8,
+              shadowRadius: 4,
+              elevation: 5,
+              color: "#fff",
             }}
           >
             <Text
               style={{
-                color: "#000",
+                color: "#fff",
                 fontSize: 14,
                 fontWeight: "800",
                 flex: 1,
@@ -129,8 +157,16 @@ export default function App() {
             >
               {item.title}
             </Text>
-            <IconButton icon="pencil" onPress={() => handleEditTodo(item)} />
-            <IconButton icon="trash-can" onPress={() => deleteTodo(item.id)} />
+            <IconButton
+              icon="pencil"
+              onPress={() => handleEditTodo(item)}
+              iconColor="#fff"
+            />
+            <IconButton
+              icon="trash-can"
+              onPress={() => deleteTodo(item.id)}
+              iconColor="#fff"
+            />
           </View>
         ))}
         {todoList.length <= 0 && <LandingPage />}
@@ -142,6 +178,6 @@ export default function App() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#220b34",
   },
 });
