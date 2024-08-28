@@ -79,7 +79,7 @@ export default function App() {
             <TextInput
               style={{
                 borderWidth: 2,
-                borderColor: "#00ff87",
+                borderColor: "#f8a902",
                 marginTop: 20,
                 borderRadius: 5,
                 paddingVertical: 1,
@@ -141,7 +141,7 @@ export default function App() {
               <View
                 key={item.id}
                 style={{
-                  backgroundColor: "#c11e38",
+                  backgroundColor: "#f8a902",
                   borderRadius: 5,
                   paddingVertical: 6,
                   paddingHorizontal: 6,
